@@ -6,45 +6,59 @@ class Rover
     @y = y
     @direction = direction
   end
-end
 
-  puts "What is the plateau size? (Ex. 5 5)"
-  @p_size = gets.chomp
+  @@compass = ["N","E","S","W"]
 
-  puts "What are the current coordinates and direction of Rover 1? Ex. 3 4 E"
-  @current1 = gets.chomp
+  DIRECTION_MATH = {
+    :N => [0, 1],
+    :E => [1, 0],
+    :S => [0, -1],
+    :W => [-1, 0]
+  }
 
-  puts "What are your instructions for Rover 1?"
-  @moves1 = gets.chomp
+input.each_char{|c| c.read_instruction}
 
-  puts "What are the current coordinates and direction of Rover 2? Ex. 3 4 E"
-  @current2 = gets.chomp
-
-  puts "What are your instructions for Rover 2?"
-  @moves2 = gets.chomp
-
-
-  def read_instruction
-
+  def read_instruction(input)
+    if input == "L"
+      puts "turn(input)"
+    elsif input == "R"
+      puts "turn(input)"
+    elsif input == "M"
+      puts "move(input)"
+    end
   end
 
 
-  def move
-
+  def turn(command)
+    if command == "L"
+      @@compass.rotate!(-1)
+    elsif command == "R"
+      @@compass.rotate!
+    end
+    puts @@compass[0]
   end
 
-
-  def turn
-
-  end
-
-
-
-
-  # def newrover(data) < Rover
-  #   Rover.new(data)
+  # def move(input)
+  #   Dx, Dy = DIRECTION_MATH[input]
+  #   # if input == "N"
+  #   # elsif input == "E"
+    # elsif input == "S"
+    # elsif input == "W"
+    # end
   # end
 
-  # puts newrover(@current)
+  def math
+    puts @@compassMath
+  end
 
-# = gets.chomp
+  def to_s
+    puts ""
+
+  end
+
+end
+
+one = Rover.new(4,6,"N")
+# one.turn("R")
+# one.move(@direction)
+one.read_instruction("R")
