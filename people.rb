@@ -4,14 +4,16 @@ class Person
     @name = name
   end
 
-  class Student
+  class Student < Person
+
     def learn
       puts "I get it!"
     end
   end
 
 
-  class Instructor
+  class Instructor < Person
+
     def teach
       puts "Everything in Ruby is an Object"
     end
@@ -23,4 +25,10 @@ class Person
 end
 
 chris = Person.new("Chris")
-chris.greeting
+chris = Instructor.new
+chris.teach
+chris. greeting
+
+# cristina = Student.new("Cristina")
+# cristina.greeting
+
