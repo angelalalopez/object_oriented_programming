@@ -5,22 +5,29 @@ class Rover
     @x = x
     @y = y
     @direction = direction
+
     @@compass = ["N","E","S","W"]
+    if @direction == "E"
+      @@compass.rotate!
+    elsif @direction == "S"
+      @@compass.rotate!(2)
+    elsif @@compass == "W"
+      @@compass.rotate!(3)
+    end
   end
 
   def read_instruction(input)
     input.each_char do |c|
-        if c == "L" || c == "R"
-          turn(c)
-        elsif c == "M"
-          move(c)
-        end
+      if c == "L" || c == "R"
+        turn(c)
+      elsif c == "M"
+        move(c)
+      end
     end
   end
 
 
   def turn(command)
-    position = @@compass.index(@direction)
     if command == "L"
       @@compass.rotate!(-1)
       @direction = @@compass[0]
@@ -51,9 +58,9 @@ class Rover
 
 end
 
-# one = Rover.new(1,2,"N")
-# one.read_instruction("LMLMLMLMM")
-# puts one
+one = Rover.new(1,2,"N")
+one.read_instruction("LMLMLMLMM")
+puts one
 
 two = Rover.new(3,3,"E")
 two.read_instruction("MMRMMRMRRM")
